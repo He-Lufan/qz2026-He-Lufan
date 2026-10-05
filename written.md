@@ -199,8 +199,23 @@ logs = [
 ```
 
 1. 写出表达式，找出所有 `level` 为 `"ERROR"` 的日志（返回字典列表）。
+list=[]
+for i in range(len(logs)):
+    if logs[i]["level"]=="ERROR":
+        list.append(logs[i])
+    else:
+        continue
+print(list)
 2. 写出表达式，统计每个用户出现了几次（返回字典，键为用户名，值为次数）。
+user={}
+for i in range(0,len(logs)):
+    if logs[i]["user"] not in user:
+        user[logs[i]["user"]]=1
+    else:
+        user[logs[i]["user"]]+=1
+print(user)
 3. 解释为什么第 2 问不能直接用 `len(logs)` 得到结果，需要什么遍历结构？
+因为len(logs)只能得到字典中总的项数，不能根据姓名内容做分类。我用了下标遍历。
 
 （在此作答）
 

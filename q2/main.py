@@ -3,6 +3,7 @@ class UserManager:
     def __init__(self):
         self.user_dict={}
         self.i=1
+        
     def add_user(self,name,age):
         user={"id":self.i,"name":name,"age":age}
         self.user_dict[self.i]=user

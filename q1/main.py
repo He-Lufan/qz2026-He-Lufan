@@ -1,10 +1,8 @@
 def analyze_log(filepath):
     import json
-    class Format(dict):
-            def __str__(self):
-                return json.dumps(self, indent=4, ensure_ascii=False)
-    r_0={"total":0,"by_level":{},
-        "by_user":{},"last_error":None}
+    from pprint import pprint
+    
+    r_0={"total":0,"by_level":{},"by_user":{},"last_error":None}
     try:
         l=[]
         l_update=[]
@@ -44,16 +42,17 @@ def analyze_log(filepath):
                   "by_user":by_user,
                   "last_error":last_error
                   }                                       #统计了字典
-        final_result=Format(r)               
+        final_result=r 
+                   
      
     except (FileNotFoundError,UnboundLocalError):
-        final_result=Format(r_0)            
+         final_result=r_0
     finally:
-        return final_result
+        pprint(final_result,indent=4,sort_dicts=False,width=1)
+        return final_result        
 
 
-result = analyze_log("bad.jsonl")
-print(result)
+result = analyze_log("empty.jsonl")
 print(result["total"])        
 print(result["by_level"])     
 print(result["by_user"])      

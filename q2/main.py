@@ -28,19 +28,25 @@ class UserManager:
             print(False)
     
     def list_users(self):
-        self.user_list=[]
+        user_list=[]
         for user in self.user_dict:
-            self.user_list.append(self.user_dict[user])
-        print(self.user_list)
+            user_list.append(self.user_dict[user])
+        print(user_list)
 
     def save_to_json(self,d):
         with open("users.json","w",encoding="utf-8") as f:
-            json.dump(self.user_list,f,ensure_ascii=False)
+            json.dump(self.user_dict,f,ensure_ascii=False)
 
     def load_from_json(self,s):  
         with open("users.json","r",encoding="utf-8") as f:
-             load=json.load(f)
-        print(load)
+            self.user_dict=json.load(f)
+        for k in range(1,len(self.user_dict)):                                 #覆盖和取最大值的功能
+            if self.user_dict[str(k)]["id"]>self.user_dict[str(k+1)]["id"]:
+                self.i=self.user_dict[str(k)]["id"]+1
+                k+=1
+            else:
+                self.i=self.user_dict[str(k+1)]["id"]+1
+                k+=1
 
 
 
